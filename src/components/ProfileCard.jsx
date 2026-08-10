@@ -119,38 +119,19 @@ export default function ProfileCard({ profile, onEditProfile, onShowToast, priva
           </div>
           {/* --- END SAILING SCENE --- */}
 
-          {/* Top Status & Minimalist Animated Privacy Pill Inside Card */}
+          {/* Top Status & Edit Bar */}
           <div className="flex items-center justify-between relative z-10 mb-6">
             <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-[11px] font-bold tracking-wider uppercase">
               <ShieldCheck className="w-3.5 h-3.5" />
               <span>{profile.badge || 'VERIFIED VIP'}</span>
             </div>
 
-            {/* Minimalist Animated Privacy Toggle Pill */}
-            <button
-              onClick={() => {
-                hapticFeedback.medium();
-                sounds.playPop();
-                onTogglePrivacyMode(isPrivate ? 'full' : 'private');
-              }}
-              className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold transition-all duration-300 border shadow-lg active:scale-95 ${
-                isPrivate
-                  ? 'bg-slate-900/90 text-cyan-300 border-cyan-500/40 hover:bg-slate-800'
-                  : 'bg-gradient-to-r from-pink-500/20 to-violet-500/20 text-pink-300 border-pink-500/40 hover:bg-pink-500/30'
-              }`}
-              title={isPrivate ? 'Private Mode: Chat Only (Phone/Social Hidden)' : 'Full Share Mode: Phone & Social Handles Visible'}
-            >
-              <div className={`w-2 h-2 rounded-full animate-ping ${isPrivate ? 'bg-cyan-400' : 'bg-pink-400'}`} />
-              {isPrivate ? <Lock className="w-3 h-3 text-cyan-400" /> : <Unlock className="w-3 h-3 text-pink-400" />}
-              <span className="text-[11px] font-semibold">{isPrivate ? 'Private' : 'Full Share'}</span>
-            </button>
-
             <button
               onClick={onEditProfile}
-              className="p-1.5 rounded-full glass-pill hover:bg-white/10 text-slate-300 hover:text-white transition-colors"
+              className="p-2 rounded-full glass-pill hover:bg-white/10 text-slate-300 hover:text-white transition-colors"
               title="Edit Profile"
             >
-              <Edit3 className="w-3.5 h-3.5" />
+              <Edit3 className="w-4 h-4" />
             </button>
           </div>
 
@@ -297,6 +278,37 @@ export default function ProfileCard({ profile, onEditProfile, onShowToast, priva
             >
               <Share2 className="w-4 h-4 text-violet-400 mb-1" />
               <span className="text-[10px] font-semibold">Share</span>
+            </button>
+          </div>
+
+          {/* Minimalist Animated Card Footer Privacy Mode Switcher */}
+          <div className="mt-4 pt-3 border-t border-white/5 relative z-10 flex items-center justify-between px-1">
+            <div className="flex items-center gap-2">
+              <span className={`w-2 h-2 rounded-full animate-ping ${isPrivate ? 'bg-cyan-400' : 'bg-pink-400'}`} />
+              <div className="text-left">
+                <p className="text-[11px] font-bold text-slate-200 flex items-center gap-1">
+                  {isPrivate ? <Lock className="w-3 h-3 text-cyan-400" /> : <Unlock className="w-3 h-3 text-pink-400" />}
+                  <span>{isPrivate ? 'Private Mode (Chat Only)' : 'Full Share Mode'}</span>
+                </p>
+                <p className="text-[9px] text-slate-400">
+                  {isPrivate ? 'Phone & social hidden on QR scan' : 'Phone & social visible on QR scan'}
+                </p>
+              </div>
+            </div>
+
+            <button
+              onClick={() => {
+                hapticFeedback.medium();
+                sounds.playPop();
+                onTogglePrivacyMode(isPrivate ? 'full' : 'private');
+              }}
+              className={`px-3 py-1 rounded-full text-[10px] font-extrabold transition-all duration-300 border shadow-md active:scale-95 ${
+                isPrivate
+                  ? 'bg-slate-900 hover:bg-slate-800 text-cyan-300 border-cyan-500/30'
+                  : 'bg-gradient-to-r from-pink-500/20 to-violet-500/20 text-pink-300 border-pink-500/40'
+              }`}
+            >
+              {isPrivate ? 'Enable Full' : 'Make Private'}
             </button>
           </div>
         </div>
