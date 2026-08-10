@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
-import { Edit3, Download, Share2, Copy, Sparkles, MapPin, Phone, Mail, Instagram, Linkedin, ExternalLink, ShieldCheck, Lock, Unlock } from 'lucide-react';
+import { Edit3, Download, Share2, Copy, Sparkles, MapPin, Phone, Mail, Instagram, Linkedin, ExternalLink, ShieldCheck, Lock, Unlock, Check } from 'lucide-react';
 import { downloadVCard } from '../utils/vcard';
 import { hapticFeedback } from '../utils/haptics';
 import { sounds } from '../utils/sound';
@@ -106,7 +106,7 @@ export default function ProfileCard({ profile, onEditProfile, onShowToast, priva
 
           {/* Main Profile Info */}
           <div className="flex flex-col items-center text-center relative z-10 space-y-3">
-            {/* Avatar with Soft Pearl Ring */}
+            {/* Avatar with Soft Pearl Ring & Golden Verification Tick */}
             <div className="relative group cursor-pointer" onClick={onEditProfile}>
               <div className="w-24 h-24 rounded-full p-1 bg-gradient-to-tr from-slate-200 via-sky-400/40 to-amber-300/40 shadow-2xl">
                 <img
@@ -115,8 +115,8 @@ export default function ProfileCard({ profile, onEditProfile, onShowToast, priva
                   className="w-full h-full object-cover rounded-full bg-slate-900"
                 />
               </div>
-              <div className="absolute bottom-0 right-0 w-6 h-6 rounded-full bg-slate-900 p-1 flex items-center justify-center text-amber-400 border border-white/20 shadow-md">
-                <Sparkles className="w-3 h-3" />
+              <div className="absolute bottom-0.5 right-0.5 w-6 h-6 rounded-full bg-gradient-to-tr from-amber-500 to-yellow-300 p-0.5 flex items-center justify-center text-slate-950 border-2 border-slate-950 shadow-md" title="Verified Member">
+                <Check className="w-3.5 h-3.5 stroke-[3]" />
               </div>
             </div>
 
