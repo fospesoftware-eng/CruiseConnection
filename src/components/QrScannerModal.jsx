@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Html5QrcodeScanner } from 'html5-qrcode';
 import { X, Scan, Zap, Camera, Sparkles, AlertCircle } from 'lucide-react';
+import { aiAssistant } from '../utils/aiAssistant';
 
 export default function QrScannerModal({ isOpen, onClose, onScanSuccess }) {
   if (!isOpen) return null;
@@ -104,7 +105,7 @@ export default function QrScannerModal({ isOpen, onClose, onScanSuccess }) {
           <div className="w-full mt-6 space-y-2">
             <div className="flex items-center gap-2 text-slate-400 text-xs justify-center mb-1">
               <Sparkles className="w-3.5 h-3.5 text-pink-400" />
-              <span className="font-semibold text-[11px] uppercase tracking-wider">Client Demo Quick Scanner</span>
+              <span className="font-semibold text-[11px] uppercase tracking-wider">AI Vision & Demo Quick Scanner</span>
             </div>
 
             <div className="grid grid-cols-2 gap-2">
@@ -112,13 +113,17 @@ export default function QrScannerModal({ isOpen, onClose, onScanSuccess }) {
                 onClick={() => handleSimulatedScan('https://scanme.app/u/elena-rostova')}
                 className="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 border border-white/10 text-xs font-semibold text-cyan-300 flex items-center justify-center gap-1.5 transition-all active:scale-95"
               >
-                <Zap className="w-3.5 h-3.5 text-yellow-400" /> Scan Elena (Designer)
+                <Zap className="w-3.5 h-3.5 text-yellow-400" /> Scan Elena (QR)
               </button>
               <button
-                onClick={() => handleSimulatedScan('https://scanme.app/u/marcus-vance')}
-                className="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 border border-white/10 text-xs font-semibold text-pink-300 flex items-center justify-center gap-1.5 transition-all active:scale-95"
+                onClick={async () => {
+                  const ocrUser = await aiAssistant.parseCardImage(null);
+                  onScanSuccess(ocrUser.qrCodeVal || 'https://scanme.app/u/victoria-sterling');
+                  onClose();
+                }}
+                className="px-3 py-2 rounded-xl bg-cyan-950/80 hover:bg-cyan-900/80 border border-cyan-500/40 text-xs font-semibold text-pink-300 flex items-center justify-center gap-1.5 transition-all active:scale-95"
               >
-                <Zap className="w-3.5 h-3.5 text-yellow-400" /> Scan Marcus (AI Lead)
+                <Sparkles className="w-3.5 h-3.5 text-cyan-400" /> AI Card/Badge OCR
               </button>
             </div>
           </div>

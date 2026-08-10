@@ -1,11 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { X, Send, Sparkles, Phone, Video, MapPin, CheckCheck, Smile } from 'lucide-react';
+import { X, Send, Sparkles, Phone, Video, MapPin, CheckCheck, Smile, ShieldAlert, Wand2, Volume2, Mic } from 'lucide-react';
 import { hapticFeedback } from '../utils/haptics';
+import { aiAssistant } from '../utils/aiAssistant';
 
 export default function ChatDrawer({ isOpen, onClose, activeUser, currentUserId, onSendMessage }) {
   if (!isOpen || !activeUser) return null;
 
   const [inputMsg, setInputMsg] = useState('');
+  const [privacyWarning, setPrivacyWarning] = useState(null);
+  const [aiSparks, setAiSparks] = useState([]);
+  const [isLoadingSparks, setIsLoadingSparks] = useState(false);
+  const [isRecordingVoice, setIsRecordingVoice] = useState(false);
   const messagesEndRef = useRef(null);
 
   const messages = activeUser.messages || [];
@@ -18,11 +23,25 @@ export default function ChatDrawer({ isOpen, onClose, activeUser, currentUserId,
     scrollToBottom();
   }, [messages]);
 
+  const handleInputChange = (e) => {
+    const val = e.target.value;
+    setInputMsg(val);
+    
+    // Privacy Shield Check
+    const privacyCheck = aiAssistant.checkPrivacyRisk(val);
+    if (privacyCheck.flagged) {
+      setPrivacyWarning(privacyCheck.reason);
+    } else {
+      setPrivacyWarning(null);
+    }
+  };
+
   const handleSend = (e) => {
     e.preventDefault();
     if (!inputMsg.trim()) return;
     onSendMessage(activeUser.id, inputMsg.trim());
     setInputMsg('');
+    setPrivacyWarning(null);
   };
 
   const handleIcebreakerClick = (text) => {
@@ -30,12 +49,21 @@ export default function ChatDrawer({ isOpen, onClose, activeUser, currentUserId,
     hapticFeedback.light();
   };
 
-  const icebreakers = [
-    "Great meeting you on the deck! 🥂",
-    "Let's grab a drink at the lounge later!",
-    "Loved your work! Drop your portfolio link.",
-    "Let me know when you're free for a chat."
-  ];
+  const handleTriggerAiSpark = async () => {
+    hapticFeedback.medium();
+    setIsLoadingSparks(true);
+    const sparks = await aiAssistant.generateSparks(activeUser.locationTag, activeUser);
+    setAiSparks(sparks);
+    setIsLoadingSparks(false);
+  };
+
+  const handleVoiceNoteClick = async () => {
+    hapticFeedback.medium();
+    setIsRecordingVoice(true);
+    const transcribedText = await aiAssistant.transcribeVoiceNote(null);
+    setInputMsg(transcribedText);
+    setIsRecordingVoice(false);
+  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-slate-950/85 backdrop-blur-md animate-fadeIn">
@@ -62,12 +90,29 @@ export default function ChatDrawer({ isOpen, onClose, activeUser, currentUserId,
 
           <div className="flex items-center gap-2">
             <button
+              onClick={handleTriggerAiSpark}
+              className="p-1.5 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 transition-colors flex items-center gap-1 text-[11px] font-bold"
+              title="AI Memory Spark"
+            >
+              <Wand2 className="w-3.5 h-3.5 text-cyan-400 animate-pulse" />
+              <span>AI Spark</span>
+            </button>
+
+            <button
               onClick={onClose}
               className="p-1.5 rounded-full text-slate-400 hover:text-white hover:bg-white/10 transition-colors"
             >
               <X className="w-5 h-5" />
             </button>
           </div>
+        </div>
+
+        {/* Feature 3: AI Instant Connection Recap Banner */}
+        <div className="px-4 py-2 bg-gradient-to-r from-slate-950 via-cyan-950/40 to-slate-950 border-b border-cyan-500/20 text-[11px] text-slate-300 flex items-center gap-2 shrink-0">
+          <Sparkles className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+          <span className="truncate">
+            <span className="font-bold text-cyan-300">Recap:</span> {aiAssistant.generateRecap(activeUser.locationTag, activeUser.metDate)}
+          </span>
         </div>
 
         {/* Message Stream */}
@@ -104,29 +149,53 @@ export default function ChatDrawer({ isOpen, onClose, activeUser, currentUserId,
           <div ref={messagesEndRef} />
         </div>
 
-        {/* Preset Quick Icebreakers */}
-        <div className="px-3 py-2 bg-slate-950 border-t border-white/5 flex items-center gap-1.5 overflow-x-auto no-scrollbar shrink-0">
-          <Sparkles className="w-3.5 h-3.5 text-pink-400 shrink-0 ml-1" />
-          {icebreakers.map((text, idx) => (
-            <button
-              key={idx}
-              onClick={() => handleIcebreakerClick(text)}
-              className="px-2.5 py-1 rounded-full bg-white/5 hover:bg-white/10 text-[10px] font-medium text-slate-300 whitespace-nowrap border border-white/5 active:scale-95 transition-all"
-            >
-              {text}
-            </button>
-          ))}
-        </div>
+        {/* Feature 1: AI Memory Spark Chips */}
+        {aiSparks.length > 0 && (
+          <div className="px-3 py-2 bg-slate-950 border-t border-cyan-500/20 flex items-center gap-1.5 overflow-x-auto no-scrollbar shrink-0">
+            <Wand2 className="w-3.5 h-3.5 text-cyan-400 shrink-0 ml-1 animate-spin" />
+            {aiSparks.map((text, idx) => (
+              <button
+                key={idx}
+                onClick={() => handleIcebreakerClick(text)}
+                className="px-2.5 py-1 rounded-full bg-cyan-500/10 hover:bg-cyan-500/20 text-[10px] font-semibold text-cyan-300 whitespace-nowrap border border-cyan-500/30 active:scale-95 transition-all"
+              >
+                {text}
+              </button>
+            ))}
+          </div>
+        )}
 
-        {/* Chat Input Bar */}
+        {/* Feature 4: Privacy Shield Alert Banner */}
+        {privacyWarning && (
+          <div className="px-3 py-1.5 bg-rose-950/90 border-t border-rose-500/40 text-rose-300 text-[10px] font-medium flex items-center gap-2 shrink-0 animate-fadeIn">
+            <ShieldAlert className="w-3.5 h-3.5 text-rose-400 shrink-0" />
+            <span className="flex-1">{privacyWarning}</span>
+          </div>
+        )}
+
+        {/* Chat Input Bar with Feature 5: Audio Voice Note */}
         <form onSubmit={handleSend} className="p-3 bg-slate-900 border-t border-white/10 flex items-center gap-2 shrink-0">
+          <button
+            type="button"
+            onClick={handleVoiceNoteClick}
+            className={`w-9 h-9 rounded-xl flex items-center justify-center transition-all ${
+              isRecordingVoice
+                ? 'bg-rose-500 text-white animate-pulse'
+                : 'bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-cyan-300'
+            }`}
+            title="Audio-to-Text Voice Note"
+          >
+            <Mic className="w-4 h-4" />
+          </button>
+
           <input
             type="text"
             placeholder={`Message ${activeUser.name.split(' ')[0]}...`}
             value={inputMsg}
-            onChange={(e) => setInputMsg(e.target.value)}
+            onChange={handleInputChange}
             className="flex-1 px-4 py-2.5 bg-slate-950 border border-white/10 rounded-2xl text-xs text-white placeholder-slate-500 focus:border-cyan-400 outline-none"
           />
+
           <button
             type="submit"
             disabled={!inputMsg.trim()}
