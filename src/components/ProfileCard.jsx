@@ -202,9 +202,15 @@ export default function ProfileCard({ profile, onEditProfile, onShowToast, priva
               "{profile.bio}"
             </p>
 
-            {/* Targeted Running Gradient Animated Border around QR Code */}
-            <div className="my-3 luxury-border-wrapper p-0.5 rounded-3xl shadow-2xl inline-block">
-              <div className="p-4 rounded-[22px] bg-white relative group cursor-pointer" onClick={() => setViewMode('qr')}>
+            {/* High-Visibility Theme-Blended Animated Gradient QR Code Container */}
+            <div className="my-4 qr-gradient-frame inline-block transition-transform duration-300 hover:scale-[1.02]">
+              <div className="p-4 rounded-[22px] bg-white relative group cursor-pointer shadow-inner" onClick={() => setViewMode('qr')}>
+                {/* Corner Bracket Accents */}
+                <div className="absolute top-2 left-2 w-3.5 h-3.5 border-t-2 border-l-2 border-cyan-500 rounded-tl pointer-events-none" />
+                <div className="absolute top-2 right-2 w-3.5 h-3.5 border-t-2 border-r-2 border-cyan-500 rounded-tr pointer-events-none" />
+                <div className="absolute bottom-2 left-2 w-3.5 h-3.5 border-b-2 border-l-2 border-amber-500 rounded-bl pointer-events-none" />
+                <div className="absolute bottom-2 right-2 w-3.5 h-3.5 border-b-2 border-r-2 border-amber-500 rounded-br pointer-events-none" />
+
                 <QRCodeSVG
                   value={profile.qrCodeVal}
                   size={160}
@@ -219,8 +225,8 @@ export default function ProfileCard({ profile, onEditProfile, onShowToast, priva
                     excavate: true,
                   }}
                 />
-                <div className="absolute inset-0 bg-slate-950/70 rounded-[22px] opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-slate-200 text-xs font-medium gap-1">
-                  <Sparkles className="w-4 h-4 text-amber-400" /> Tap to Enlarge
+                <div className="absolute inset-0 bg-slate-950/75 rounded-[22px] opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-slate-200 text-xs font-semibold gap-1.5">
+                  <Sparkles className="w-4 h-4 text-amber-400 animate-spin" /> Tap to Enlarge
                 </div>
               </div>
             </div>
