@@ -238,17 +238,20 @@ export default function ProfileCard({ profile, onEditProfile, onShowToast, priva
               </div>
             </div>
 
-            <p className="text-[11px] font-medium text-slate-400 flex items-center gap-1">
+            {/* Minimalist Privacy Lock/Unlock Icon Indicator */}
+            <div className="flex items-center justify-center gap-1.5 py-0.5">
               {isPrivate ? (
-                <span className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-sky-500/10 text-sky-300 border border-sky-500/20 font-medium text-[10px]">
-                  <Lock className="w-3 h-3 text-sky-400" /> Private Mode: Shares Profile & Chat Only
-                </span>
+                <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-300 text-xs font-semibold" title="Private Mode: Phone & Social Hidden">
+                  <Lock className="w-3.5 h-3.5 text-sky-400" />
+                  <span>Private</span>
+                </div>
               ) : (
-                <span className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-300 border border-amber-500/20 font-medium text-[10px]">
-                  <Unlock className="w-3 h-3 text-amber-400" /> Full Share Mode: Phone, Email & Social Shared
-                </span>
+                <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-300 text-xs font-semibold" title="Full Share Mode: All Contact Info Visible">
+                  <Unlock className="w-3.5 h-3.5 text-amber-400" />
+                  <span>Full Share</span>
+                </div>
               )}
-            </p>
+            </div>
 
             {/* Social & Contact Badges */}
             {!isPrivate ? (
@@ -286,9 +289,9 @@ export default function ProfileCard({ profile, onEditProfile, onShowToast, priva
                 )}
               </div>
             ) : (
-              <div className="flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/80 border border-white/5 text-slate-400 text-[11px] font-normal">
-                <Lock className="w-3 h-3 text-slate-500" />
-                <span>Phone & social handles shielded</span>
+              <div className="flex items-center justify-center gap-1.5 px-3 py-1 rounded-full bg-slate-900/60 border border-white/5 text-slate-400 text-[11px] font-medium">
+                <Lock className="w-3.5 h-3.5 text-slate-500" />
+                <span>Protected</span>
               </div>
             )}
 
