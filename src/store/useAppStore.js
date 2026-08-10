@@ -119,6 +119,10 @@ export function useAppStore() {
     return saved ? JSON.parse(saved) : INITIAL_PROFILE;
   });
 
+  const [privacyMode, setPrivacyMode] = useState(() => {
+    return localStorage.getItem('scanme_privacy_mode') || 'private';
+  });
+
   const [connections, setConnections] = useState(() => {
     const saved = localStorage.getItem('scanme_user_connections');
     return saved ? JSON.parse(saved) : INITIAL_CONNECTIONS;
@@ -135,6 +139,20 @@ export function useAppStore() {
   useEffect(() => {
     localStorage.setItem('scanme_user_profile', JSON.stringify(profile));
   }, [profile]);
+
+  // Sync privacy mode
+  useEffect(() => {
+    localStorage.setItem('scanme_privacy_mode', privacyMode);
+  }, [privacyMode]);
+
+  const handleTogglePrivacyMode = (newMode) => {
+    setPrivacyMode(newMode);
+    if (newMode === 'private') {
+      showToast('Switched to Private Mode (Chat Only)', 'info');
+    } else {
+      showToast('Switched to Full Share Mode (Phone & Social Shared)', 'success');
+    }
+  };
 
   // Sync connections to localStorage
   useEffect(() => {
@@ -272,6 +290,7 @@ export function useAppStore() {
 
   return {
     profile,
+    privacyMode,
     connections,
     activeTab,
     setActiveTab,
@@ -285,6 +304,7 @@ export function useAppStore() {
     toast,
     showToast,
     handleUpdateProfile,
+    handleTogglePrivacyMode,
     handleScanSuccess,
     handleConfirmConnection,
     handleSendMessage,

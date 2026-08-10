@@ -13,6 +13,7 @@ import Toast from './components/Toast';
 export default function App() {
   const {
     profile,
+    privacyMode,
     connections,
     activeTab,
     setActiveTab,
@@ -26,6 +27,7 @@ export default function App() {
     toast,
     showToast,
     handleUpdateProfile,
+    handleTogglePrivacyMode,
     handleScanSuccess,
     handleConfirmConnection,
     handleSendMessage,
@@ -53,6 +55,8 @@ export default function App() {
         {activeTab === 'card' && (
           <ProfileCard
             profile={profile}
+            privacyMode={privacyMode}
+            onTogglePrivacyMode={handleTogglePrivacyMode}
             onEditProfile={() => setIsProfileModalOpen(true)}
             onShowToast={showToast}
           />

@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
-import { Edit3, Download, Share2, Copy, Sparkles, MapPin, Phone, Mail, Instagram, Linkedin, ExternalLink, ShieldCheck } from 'lucide-react';
+import { Edit3, Download, Share2, Copy, Sparkles, MapPin, Phone, Mail, Instagram, Linkedin, ExternalLink, ShieldCheck, Lock, Unlock, Eye, EyeOff } from 'lucide-react';
 import { downloadVCard } from '../utils/vcard';
 import { hapticFeedback } from '../utils/haptics';
 import { sounds } from '../utils/sound';
 
-export default function ProfileCard({ profile, onEditProfile, onShowToast }) {
+export default function ProfileCard({ profile, onEditProfile, onShowToast, privacyMode = 'private', onTogglePrivacyMode }) {
   const [viewMode, setViewMode] = useState('card'); // 'card' | 'qr'
+
+  const isPrivate = privacyMode === 'private';
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(profile.qrCodeVal);
@@ -16,6 +18,10 @@ export default function ProfileCard({ profile, onEditProfile, onShowToast }) {
   };
 
   const handleDownloadMyVCard = () => {
+    if (isPrivate) {
+      onShowToast('vCard disabled in Private Mode. Switch to Full Share mode to enable.', 'error');
+      return;
+    }
     downloadVCard(profile);
     hapticFeedback.medium();
     sounds.playPop();
@@ -27,7 +33,7 @@ export default function ProfileCard({ profile, onEditProfile, onShowToast }) {
     if (navigator.share) {
       try {
         await navigator.share({
-          title: `Connect with ${profile.name} on Scan Me`,
+          title: `Connect with ${profile.name} on CruiseConnector`,
           text: profile.bio,
           url: profile.qrCodeVal,
         });
@@ -39,8 +45,8 @@ export default function ProfileCard({ profile, onEditProfile, onShowToast }) {
 
   return (
     <div className="w-full max-w-md mx-auto space-y-4 pb-24 pt-2">
-      {/* View Switcher Pill */}
-      <div className="flex justify-center">
+      {/* View Switcher Pill & Privacy Toggle */}
+      <div className="flex flex-col items-center gap-2">
         <div className="p-1 rounded-full glass-panel border border-white/10 flex items-center gap-1 shadow-lg">
           <button
             onClick={() => setViewMode('card')}
@@ -61,6 +67,51 @@ export default function ProfileCard({ profile, onEditProfile, onShowToast }) {
             }`}
           >
             Full QR View
+          </button>
+        </div>
+
+        {/* Easy Privacy Mode Switcher */}
+        <div className="w-full p-2.5 rounded-2xl glass-card border border-cyan-500/30 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            {isPrivate ? (
+              <div className="w-8 h-8 rounded-xl bg-cyan-500/20 flex items-center justify-center text-cyan-300">
+                <Lock className="w-4 h-4" />
+              </div>
+            ) : (
+              <div className="w-8 h-8 rounded-xl bg-pink-500/20 flex items-center justify-center text-pink-300">
+                <Unlock className="w-4 h-4" />
+              </div>
+            )}
+            <div className="text-left">
+              <div className="flex items-center gap-1.5">
+                <span className="text-xs font-extrabold text-white">
+                  {isPrivate ? 'Private Mode' : 'Full Share Mode'}
+                </span>
+                <span className={`text-[9px] font-bold px-1.5 py-0.2 rounded-full ${
+                  isPrivate ? 'bg-cyan-500/20 text-cyan-300' : 'bg-pink-500/20 text-pink-300'
+                }`}>
+                  {isPrivate ? 'Chat Only' : 'Phone & Social'}
+                </span>
+              </div>
+              <p className="text-[10px] text-slate-400">
+                {isPrivate ? 'QR shares profile & chat only (Phone/Social hidden)' : 'QR shares phone, email & all social links'}
+              </p>
+            </div>
+          </div>
+
+          <button
+            onClick={() => {
+              hapticFeedback.medium();
+              sounds.playPop();
+              onTogglePrivacyMode(isPrivate ? 'full' : 'private');
+            }}
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all shadow-md active:scale-95 ${
+              isPrivate
+                ? 'bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-cyan-500/30'
+                : 'bg-gradient-to-r from-pink-500 to-violet-500 text-white'
+            }`}
+          >
+            {isPrivate ? 'Enable Full' : 'Make Private'}
           </button>
         </div>
       </div>
@@ -147,39 +198,46 @@ export default function ProfileCard({ profile, onEditProfile, onShowToast }) {
             </p>
 
             {/* Social & Contact Badges */}
-            <div className="flex flex-wrap justify-center gap-2 pt-1">
-              {profile.instagram && (
-                <a
-                  href={`https://instagram.com/${profile.instagram.replace('@', '')}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-pink-500/10 hover:bg-pink-500/20 text-pink-300 border border-pink-500/30 text-xs font-medium transition-colors"
-                >
-                  <Instagram className="w-3.5 h-3.5" />
-                  <span>@{profile.instagram.replace('@', '')}</span>
-                </a>
-              )}
-              {profile.linkedin && (
-                <a
-                  href={`https://linkedin.com/in/${profile.linkedin}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-blue-500/10 hover:bg-blue-500/20 text-blue-300 border border-blue-500/30 text-xs font-medium transition-colors"
-                >
-                  <Linkedin className="w-3.5 h-3.5" />
-                  <span>LinkedIn</span>
-                </a>
-              )}
-              {profile.phone && (
-                <a
-                  href={`tel:${profile.phone}`}
-                  className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-medium transition-colors"
-                >
-                  <Phone className="w-3.5 h-3.5" />
-                  <span>{profile.phone}</span>
-                </a>
-              )}
-            </div>
+            {!isPrivate ? (
+              <div className="flex flex-wrap justify-center gap-2 pt-1">
+                {profile.instagram && (
+                  <a
+                    href={`https://instagram.com/${profile.instagram.replace('@', '')}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-pink-500/10 hover:bg-pink-500/20 text-pink-300 border border-pink-500/30 text-xs font-medium transition-colors"
+                  >
+                    <Instagram className="w-3.5 h-3.5" />
+                    <span>@{profile.instagram.replace('@', '')}</span>
+                  </a>
+                )}
+                {profile.linkedin && (
+                  <a
+                    href={`https://linkedin.com/in/${profile.linkedin}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-blue-500/10 hover:bg-blue-500/20 text-blue-300 border border-blue-500/30 text-xs font-medium transition-colors"
+                  >
+                    <Linkedin className="w-3.5 h-3.5" />
+                    <span>LinkedIn</span>
+                  </a>
+                )}
+                {profile.phone && (
+                  <a
+                    href={`tel:${profile.phone}`}
+                    className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-medium transition-colors"
+                  >
+                    <Phone className="w-3.5 h-3.5" />
+                    <span>{profile.phone}</span>
+                  </a>
+                )}
+              </div>
+            ) : (
+              <div className="flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-medium">
+                <Lock className="w-3.5 h-3.5" />
+                <span>Private Mode Enabled: Phone & Social Handles Hidden</span>
+              </div>
+            )}
 
             {/* Tags */}
             {profile.tags && profile.tags.length > 0 && (
