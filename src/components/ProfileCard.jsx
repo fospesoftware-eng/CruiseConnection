@@ -72,11 +72,12 @@ export default function ProfileCard({ profile, onEditProfile, onShowToast, priva
       </div>
 
       {viewMode === 'card' ? (
-        /* Full Card View with Ultra-Luxury Soft Minimalist Aesthetics */
-        <div className="glass-card rounded-3xl p-6 relative overflow-hidden border border-white/10 shadow-2xl transition-all duration-500">
-          {/* Soft Breathing Ambient Backlight */}
-          <div className="absolute -top-16 -right-16 w-52 h-52 rounded-full bg-sky-500/10 blur-3xl pointer-events-none animate-luxury-breathe" />
-          <div className="absolute -bottom-16 -left-16 w-52 h-52 rounded-full bg-amber-500/10 blur-3xl pointer-events-none animate-luxury-breathe" />
+        /* Full Card View with Running Gradient Border & Soft Minimalist Aesthetics */
+        <div className="luxury-border-wrapper shadow-2xl">
+          <div className="glass-card rounded-3xl p-6 relative overflow-hidden transition-all duration-500">
+            {/* Soft Breathing Ambient Backlight */}
+            <div className="absolute -top-16 -right-16 w-52 h-52 rounded-full bg-sky-500/10 blur-3xl pointer-events-none animate-luxury-breathe" />
+            <div className="absolute -bottom-16 -left-16 w-52 h-52 rounded-full bg-amber-500/10 blur-3xl pointer-events-none animate-luxury-breathe" />
 
           {/* Minimalist Soft Wave Horizon Vector Accent */}
           <div className="absolute top-0 left-0 right-0 h-20 pointer-events-none overflow-hidden opacity-20">
@@ -274,6 +275,7 @@ export default function ProfileCard({ profile, onEditProfile, onShowToast, priva
             </button>
           </div>
         </div>
+      </div>
       ) : (
         /* Enlarged Standalone QR Mode for high brightness scanning */
         <div className="glass-card rounded-3xl p-8 text-center flex flex-col items-center space-y-6 border border-white/10">
