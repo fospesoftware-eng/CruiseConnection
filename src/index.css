@@ -99,48 +99,70 @@
   animation: luxuryBreathe 12s ease-in-out infinite;
 }
 
-/* Soft Oceanic Breeze Line Flow */
-@keyframes luxuryWaveOne {
-  0%, 100% {
-    transform: translateX(0px) translateY(0px);
-  }
-  50% {
-    transform: translateX(-15px) translateY(2px);
-  }
-}
-
-@keyframes luxuryWaveTwo {
-  0%, 100% {
-    transform: translateX(0px) translateY(0px);
-  }
-  50% {
-    transform: translateX(12px) translateY(-2px);
-  }
-}
-
-.animate-luxury-wave-1 {
-  animation: luxuryWaveOne 14s ease-in-out infinite;
-}
-
-.animate-luxury-wave-2 {
-  animation: luxuryWaveTwo 10s ease-in-out infinite;
-}
-
-/* Elegant Subdued Laser Sweep for Scanner */
-@keyframes laserSweepSoft {
+/* Real-World Ocean Liner Sailing & Water Sway Animation */
+@keyframes realCruiseSail {
   0% {
-    top: 0%;
-    opacity: 0.4;
+    transform: translateX(-110%) translateY(0px);
   }
   50% {
-    opacity: 0.9;
+    transform: translateX(40%) translateY(-2px);
   }
   100% {
-    top: 96%;
-    opacity: 0.4;
+    transform: translateX(190%) translateY(0px);
   }
 }
 
-.animate-laser-sweep {
-  animation: laserSweepSoft 2.4s ease-in-out infinite alternate;
+@keyframes shipPitchRoll {
+  0%, 100% {
+    transform: rotate(0deg) translateY(0px);
+  }
+  50% {
+    transform: rotate(-0.8deg) translateY(-2px);
+  }
+}
+
+.animate-real-cruise {
+  animation: realCruiseSail 22s linear infinite;
+}
+
+.animate-ship-sway {
+  animation: shipPitchRoll 4s ease-in-out infinite;
+}
+
+/* Multi-layered Realistic Ocean Waves */
+@keyframes oceanWaveDeep {
+  0%, 100% { transform: translateX(0) scaleY(1); }
+  50% { transform: translateX(-30px) scaleY(1.05); }
+}
+
+@keyframes oceanWaveMid {
+  0%, 100% { transform: translateX(0) scaleY(1); }
+  50% { transform: translateX(25px) scaleY(0.95); }
+}
+
+@keyframes oceanWaveCrest {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-15px); }
+}
+
+.animate-ocean-deep {
+  animation: oceanWaveDeep 8s ease-in-out infinite;
+}
+
+.animate-ocean-mid {
+  animation: oceanWaveMid 5.5s ease-in-out infinite;
+}
+
+.animate-ocean-crest {
+  animation: oceanWaveCrest 3.8s ease-in-out infinite;
+}
+
+/* Water Light Reflection Shimmer */
+@keyframes waterShimmer {
+  0%, 100% { opacity: 0.2; transform: scaleX(1); }
+  50% { opacity: 0.6; transform: scaleX(1.15); }
+}
+
+.animate-water-shimmer {
+  animation: waterShimmer 3s ease-in-out infinite;
 }
