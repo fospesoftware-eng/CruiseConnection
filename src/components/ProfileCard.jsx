@@ -226,7 +226,7 @@ export default function ProfileCard({ profile, onEditProfile, onShowToast, priva
                   }}
                 />
                 <div className="absolute inset-0 bg-slate-950/75 rounded-[22px] opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-slate-200 text-xs font-semibold gap-1.5">
-                  <Sparkles className="w-4 h-4 text-amber-400 animate-spin" /> Tap to Enlarge
+                  <ExternalLink className="w-4 h-4 text-cyan-400" /> Tap to Enlarge
                 </div>
               </div>
             </div>

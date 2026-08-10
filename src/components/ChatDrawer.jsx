@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { X, Send, Sparkles, Phone, Video, MapPin, CheckCheck, Smile, ShieldAlert, Wand2, Volume2, Mic } from 'lucide-react';
+import { X, Send, Phone, Video, MapPin, CheckCheck, Smile, ShieldAlert, MessageSquare, Volume2, Mic, Info } from 'lucide-react';
 import { hapticFeedback } from '../utils/haptics';
 import { aiAssistant } from '../utils/aiAssistant';
 
@@ -92,10 +92,10 @@ export default function ChatDrawer({ isOpen, onClose, activeUser, currentUserId,
             <button
               onClick={handleTriggerAiSpark}
               className="p-1.5 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 transition-colors flex items-center gap-1 text-[11px] font-bold"
-              title="AI Memory Spark"
+              title="Quick Suggestion"
             >
-              <Wand2 className="w-3.5 h-3.5 text-cyan-400 animate-pulse" />
-              <span>AI Spark</span>
+              <MessageSquare className="w-3.5 h-3.5 text-cyan-400" />
+              <span>Suggestions</span>
             </button>
 
             <button
@@ -107,9 +107,9 @@ export default function ChatDrawer({ isOpen, onClose, activeUser, currentUserId,
           </div>
         </div>
 
-        {/* Feature 3: AI Instant Connection Recap Banner */}
+        {/* Instant Connection Recap Banner */}
         <div className="px-4 py-2 bg-gradient-to-r from-slate-950 via-cyan-950/40 to-slate-950 border-b border-cyan-500/20 text-[11px] text-slate-300 flex items-center gap-2 shrink-0">
-          <Sparkles className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+          <Info className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
           <span className="truncate">
             <span className="font-bold text-cyan-300">Recap:</span> {aiAssistant.generateRecap(activeUser.locationTag, activeUser.metDate)}
           </span>
@@ -149,10 +149,10 @@ export default function ChatDrawer({ isOpen, onClose, activeUser, currentUserId,
           <div ref={messagesEndRef} />
         </div>
 
-        {/* Feature 1: AI Memory Spark Chips */}
+        {/* Feature 1: Memory Spark Suggestion Chips */}
         {aiSparks.length > 0 && (
           <div className="px-3 py-2 bg-slate-950 border-t border-cyan-500/20 flex items-center gap-1.5 overflow-x-auto no-scrollbar shrink-0">
-            <Wand2 className="w-3.5 h-3.5 text-cyan-400 shrink-0 ml-1 animate-spin" />
+            <MessageSquare className="w-3.5 h-3.5 text-cyan-400 shrink-0 ml-1" />
             {aiSparks.map((text, idx) => (
               <button
                 key={idx}

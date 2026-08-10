@@ -129,7 +129,7 @@ export default function HandshakeModal({ isOpen, onClose, scannedUser, onConfirm
               onClick={handleConnect}
               className="w-2/3 py-3 rounded-2xl bg-gradient-to-r from-cyan-500 via-pink-500 to-violet-500 text-white font-extrabold text-xs shadow-xl shadow-cyan-500/30 flex items-center justify-center gap-2 hover:opacity-95 active:scale-95 transition-all"
             >
-              <Sparkles className="w-4 h-4" /> Exchange Info & Connect
+              <UserCheck className="w-4 h-4" /> Exchange Info & Connect
             </button>
           </div>
         </div>

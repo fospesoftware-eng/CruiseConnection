@@ -123,6 +123,14 @@ export function useAppStore() {
     return localStorage.getItem('scanme_privacy_mode') || 'private';
   });
 
+  const [isKidsMode, setIsKidsMode] = useState(() => {
+    return localStorage.getItem('scanme_kids_mode') === 'true';
+  });
+
+  const [parentalPin, setParentalPin] = useState(() => {
+    return localStorage.getItem('scanme_parental_pin') || '1234';
+  });
+
   const [connections, setConnections] = useState(() => {
     const saved = localStorage.getItem('scanme_user_connections');
     return saved ? JSON.parse(saved) : INITIAL_CONNECTIONS;
@@ -144,6 +152,37 @@ export function useAppStore() {
   useEffect(() => {
     localStorage.setItem('scanme_privacy_mode', privacyMode);
   }, [privacyMode]);
+
+  // Sync kids mode
+  useEffect(() => {
+    localStorage.setItem('scanme_kids_mode', isKidsMode ? 'true' : 'false');
+  }, [isKidsMode]);
+
+  // Sync parental pin
+  useEffect(() => {
+    localStorage.setItem('scanme_parental_pin', parentalPin);
+  }, [parentalPin]);
+
+  const handleToggleKidsMode = (enable, inputPin, newPin = null) => {
+    if (enable) {
+      const pinToSet = newPin || '1234';
+      setParentalPin(pinToSet);
+      setIsKidsMode(true);
+      setPrivacyMode('private'); // Enforce strict privacy
+      showToast('Kids Mode / Parental Control Enabled 🛡️', 'success');
+      return true;
+    } else {
+      // Disable requires matching PIN
+      if (inputPin === parentalPin) {
+        setIsKidsMode(false);
+        showToast('Kids Mode Disabled', 'info');
+        return true;
+      } else {
+        showToast('Incorrect Parental PIN!', 'error');
+        return false;
+      }
+    }
+  };
 
   const handleTogglePrivacyMode = (newMode) => {
     setPrivacyMode(newMode);
@@ -291,6 +330,8 @@ export function useAppStore() {
   return {
     profile,
     privacyMode,
+    isKidsMode,
+    parentalPin,
     connections,
     activeTab,
     setActiveTab,
@@ -305,6 +346,7 @@ export function useAppStore() {
     showToast,
     handleUpdateProfile,
     handleTogglePrivacyMode,
+    handleToggleKidsMode,
     handleScanSuccess,
     handleConfirmConnection,
     handleSendMessage,

@@ -104,8 +104,8 @@ export default function QrScannerModal({ isOpen, onClose, onScanSuccess }) {
           {/* Quick Demo Simulator CTA for Client Preview */}
           <div className="w-full mt-6 space-y-2">
             <div className="flex items-center gap-2 text-slate-400 text-xs justify-center mb-1">
-              <Sparkles className="w-3.5 h-3.5 text-pink-400" />
-              <span className="font-semibold text-[11px] uppercase tracking-wider">AI Vision & Demo Quick Scanner</span>
+              <Camera className="w-3.5 h-3.5 text-cyan-400" />
+              <span className="font-semibold text-[11px] uppercase tracking-wider">Vision & Quick Demo Scanner</span>
             </div>
 
             <div className="grid grid-cols-2 gap-2">
@@ -123,7 +123,7 @@ export default function QrScannerModal({ isOpen, onClose, onScanSuccess }) {
                 }}
                 className="px-3 py-2 rounded-xl bg-cyan-950/80 hover:bg-cyan-900/80 border border-cyan-500/40 text-xs font-semibold text-pink-300 flex items-center justify-center gap-1.5 transition-all active:scale-95"
               >
-                <Sparkles className="w-3.5 h-3.5 text-cyan-400" /> AI Card/Badge OCR
+                <Camera className="w-3.5 h-3.5 text-cyan-400" /> Card / Badge OCR
               </button>
             </div>
           </div>

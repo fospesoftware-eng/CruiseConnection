@@ -14,6 +14,8 @@ export default function App() {
   const {
     profile,
     privacyMode,
+    isKidsMode,
+    parentalPin,
     connections,
     activeTab,
     setActiveTab,
@@ -28,6 +30,7 @@ export default function App() {
     showToast,
     handleUpdateProfile,
     handleTogglePrivacyMode,
+    handleToggleKidsMode,
     handleScanSuccess,
     handleConfirmConnection,
     handleSendMessage,
@@ -86,6 +89,8 @@ export default function App() {
           <SettingsView
             profile={profile}
             connectionsCount={connections.length}
+            isKidsMode={isKidsMode}
+            onToggleKidsMode={handleToggleKidsMode}
             onResetDemo={handleResetDemo}
             onShowToast={showToast}
           />
