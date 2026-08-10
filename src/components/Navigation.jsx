@@ -1,5 +1,6 @@
 import React from 'react';
 import { QrCode, Scan, Users, MessageSquare, Settings, Sparkles, UserCheck } from 'lucide-react';
+import CruiseLogo from './CruiseLogo';
 import { hapticFeedback } from '../utils/haptics';
 
 export default function Navigation({ activeTab, setActiveTab, profile, connectionsCount, onOpenScanner }) {
@@ -15,19 +16,8 @@ export default function Navigation({ activeTab, setActiveTab, profile, connectio
       {/* Top Glass Navigation Bar */}
       <header className="sticky top-0 z-30 w-full glass-panel border-b border-white/10 px-4 py-3">
         <div className="max-w-md mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-2.5 cursor-pointer" onClick={() => handleTabChange('card')}>
-            <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-cyan-500 to-pink-500 p-0.5 shadow-lg shadow-cyan-500/20 flex items-center justify-center">
-              <div className="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center">
-                <QrCode className="w-4 h-4 text-cyan-400" />
-              </div>
-            </div>
-            <div>
-              <div className="flex items-center gap-1.5">
-                <span className="font-extrabold text-sm tracking-wider text-white">CRUISE<span className="text-cyan-400">CONNECTION</span></span>
-                <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">V1 MVP</span>
-              </div>
-              <p className="text-[10px] text-slate-400 font-medium">Instant Contact Bridge</p>
-            </div>
+          <div className="flex items-center gap-2 cursor-pointer" onClick={() => handleTabChange('card')}>
+            <CruiseLogo className="h-7" showSubtext={true} />
           </div>
 
           <div className="flex items-center gap-2">

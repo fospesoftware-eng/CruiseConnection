@@ -132,8 +132,8 @@ export default function ProfileCard({ profile, onEditProfile, onShowToast }) {
                   src: "/favicon.svg",
                   x: undefined,
                   y: undefined,
-                  height: 28,
-                  width: 28,
+                  height: 32,
+                  width: 32,
                   excavate: true,
                 }}
               />

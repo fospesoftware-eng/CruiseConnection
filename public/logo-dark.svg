@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 130" fill="none">
+  <defs>
+    <linearGradient id="waveGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="50%" stop-color="#cbd5e1" />
+      <stop offset="100%" stop-color="#38bdf8" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Wave Icon -->
+  <g stroke="url(#waveGlow)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- Left wave tail into main crest -->
+    <path d="M 25 102 C 60 102, 70 82, 85 58 C 102 30, 125 22, 142 42 C 156 58, 150 92, 125 100 C 105 106, 92 88, 102 68 C 110 52, 128 50, 142 66 C 160 86, 175 104, 202 102 C 220 100, 232 78, 240 68 C 248 58, 258 64, 252 82 C 248 94, 238 100, 230 98" />
+  </g>
+  
+  <!-- Brand Typography -->
+  <g fill="#f1f5f9" font-family="'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif">
+    <text x="272" y="52" font-weight="800" font-size="30" letter-spacing="4.5">CRUISE</text>
+    <text x="272" y="88" font-weight="800" font-size="30" letter-spacing="4.5">CONNECTOR</text>
+    <text x="274" y="112" font-weight="600" font-size="12" fill="#38bdf8" letter-spacing="5">CONNECT ONBOARD</text>
+  </g>
+</svg>
