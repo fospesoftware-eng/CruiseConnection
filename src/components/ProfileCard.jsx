@@ -45,8 +45,8 @@ export default function ProfileCard({ profile, onEditProfile, onShowToast, priva
 
   return (
     <div className="w-full max-w-md mx-auto space-y-4 pb-24 pt-2">
-      {/* View Switcher Pill & Privacy Toggle */}
-      <div className="flex flex-col items-center gap-2">
+      {/* View Switcher Pill */}
+      <div className="flex justify-center">
         <div className="p-1 rounded-full glass-panel border border-white/10 flex items-center gap-1 shadow-lg">
           <button
             onClick={() => setViewMode('card')}
@@ -69,51 +69,6 @@ export default function ProfileCard({ profile, onEditProfile, onShowToast, priva
             Full QR View
           </button>
         </div>
-
-        {/* Easy Privacy Mode Switcher */}
-        <div className="w-full p-2.5 rounded-2xl glass-card border border-cyan-500/30 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            {isPrivate ? (
-              <div className="w-8 h-8 rounded-xl bg-cyan-500/20 flex items-center justify-center text-cyan-300">
-                <Lock className="w-4 h-4" />
-              </div>
-            ) : (
-              <div className="w-8 h-8 rounded-xl bg-pink-500/20 flex items-center justify-center text-pink-300">
-                <Unlock className="w-4 h-4" />
-              </div>
-            )}
-            <div className="text-left">
-              <div className="flex items-center gap-1.5">
-                <span className="text-xs font-extrabold text-white">
-                  {isPrivate ? 'Private Mode' : 'Full Share Mode'}
-                </span>
-                <span className={`text-[9px] font-bold px-1.5 py-0.2 rounded-full ${
-                  isPrivate ? 'bg-cyan-500/20 text-cyan-300' : 'bg-pink-500/20 text-pink-300'
-                }`}>
-                  {isPrivate ? 'Chat Only' : 'Phone & Social'}
-                </span>
-              </div>
-              <p className="text-[10px] text-slate-400">
-                {isPrivate ? 'QR shares profile & chat only (Phone/Social hidden)' : 'QR shares phone, email & all social links'}
-              </p>
-            </div>
-          </div>
-
-          <button
-            onClick={() => {
-              hapticFeedback.medium();
-              sounds.playPop();
-              onTogglePrivacyMode(isPrivate ? 'full' : 'private');
-            }}
-            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all shadow-md active:scale-95 ${
-              isPrivate
-                ? 'bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-cyan-500/30'
-                : 'bg-gradient-to-r from-pink-500 to-violet-500 text-white'
-            }`}
-          >
-            {isPrivate ? 'Enable Full' : 'Make Private'}
-          </button>
-        </div>
       </div>
 
       {viewMode === 'card' ? (
@@ -123,18 +78,38 @@ export default function ProfileCard({ profile, onEditProfile, onShowToast, priva
           <div className="absolute -top-12 -right-12 w-44 h-44 rounded-full bg-cyan-500/20 blur-3xl pointer-events-none" />
           <div className="absolute -bottom-12 -left-12 w-44 h-44 rounded-full bg-pink-500/20 blur-3xl pointer-events-none" />
 
-          {/* Top Status & Edit Bar */}
+          {/* Top Status & Minimalist Animated Privacy Pill Inside Card */}
           <div className="flex items-center justify-between relative z-10 mb-6">
             <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-[11px] font-bold tracking-wider uppercase">
               <ShieldCheck className="w-3.5 h-3.5" />
               <span>{profile.badge || 'VERIFIED VIP'}</span>
             </div>
+
+            {/* Minimalist Animated Privacy Toggle Pill */}
+            <button
+              onClick={() => {
+                hapticFeedback.medium();
+                sounds.playPop();
+                onTogglePrivacyMode(isPrivate ? 'full' : 'private');
+              }}
+              className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold transition-all duration-300 border shadow-lg active:scale-95 ${
+                isPrivate
+                  ? 'bg-slate-900/90 text-cyan-300 border-cyan-500/40 hover:bg-slate-800'
+                  : 'bg-gradient-to-r from-pink-500/20 to-violet-500/20 text-pink-300 border-pink-500/40 hover:bg-pink-500/30'
+              }`}
+              title={isPrivate ? 'Private Mode: Chat Only (Phone/Social Hidden)' : 'Full Share Mode: Phone & Social Handles Visible'}
+            >
+              <div className={`w-2 h-2 rounded-full animate-ping ${isPrivate ? 'bg-cyan-400' : 'bg-pink-400'}`} />
+              {isPrivate ? <Lock className="w-3 h-3 text-cyan-400" /> : <Unlock className="w-3 h-3 text-pink-400" />}
+              <span className="text-[11px] font-semibold">{isPrivate ? 'Private' : 'Full Share'}</span>
+            </button>
+
             <button
               onClick={onEditProfile}
-              className="p-2 rounded-full glass-pill hover:bg-white/10 text-slate-300 hover:text-white transition-colors"
+              className="p-1.5 rounded-full glass-pill hover:bg-white/10 text-slate-300 hover:text-white transition-colors"
               title="Edit Profile"
             >
-              <Edit3 className="w-4 h-4" />
+              <Edit3 className="w-3.5 h-3.5" />
             </button>
           </div>
 
@@ -194,7 +169,15 @@ export default function ProfileCard({ profile, onEditProfile, onShowToast, priva
             </div>
 
             <p className="text-[11px] font-medium text-slate-400 flex items-center gap-1">
-              <span>Scan to instantly save contact details</span>
+              {isPrivate ? (
+                <span className="flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-cyan-500/10 text-cyan-300 border border-cyan-500/30 font-semibold text-[10px]">
+                  <Lock className="w-3 h-3 text-cyan-400" /> Private Mode: Shares Profile & Chat Only
+                </span>
+              ) : (
+                <span className="flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-pink-500/10 text-pink-300 border border-pink-500/30 font-semibold text-[10px]">
+                  <Unlock className="w-3 h-3 text-pink-400" /> Full Share Mode: Phone, Email & Social Shared
+                </span>
+              )}
             </p>
 
             {/* Social & Contact Badges */}
