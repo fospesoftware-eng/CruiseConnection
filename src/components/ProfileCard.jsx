@@ -5,7 +5,7 @@ import { downloadVCard } from '../utils/vcard';
 import { hapticFeedback } from '../utils/haptics';
 import { sounds } from '../utils/sound';
 
-export default function ProfileCard({ profile, onEditProfile, onShowToast, privacyMode = 'private', onTogglePrivacyMode }) {
+export default function ProfileCard({ profile, onEditProfile, onShowToast, privacyMode = 'private', isKidsMode = false, onTogglePrivacyMode }) {
   const [viewMode, setViewMode] = useState('card'); // 'card' | 'qr'
   const cardRef = useRef(null);
 
