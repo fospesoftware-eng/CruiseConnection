@@ -132,8 +132,18 @@ export default function ProfileCard({ profile, onEditProfile, onShowToast, priva
             <div className="absolute bottom-24 right-10 w-2 h-2 rounded-full bg-sky-200/40 animate-particle-2" />
           </div>
 
-          {/* Flowing Liquid Silk Wave Background Lines */}
+          {/* Flowing Liquid Silk Wave Background Lines (Top Header) */}
           <div className="absolute top-0 left-0 right-0 h-36 pointer-events-none overflow-hidden opacity-30 group-hover:opacity-50 transition-opacity">
+            <svg className="w-[200%] h-full text-cyan-400/40 animate-silk-1" viewBox="0 0 1600 160" preserveAspectRatio="none">
+              <path d="M0,40 Q400,120 800,40 T1600,40 L1600,0 L0,0 Z" fill="none" stroke="currentColor" strokeWidth="1.5" />
+            </svg>
+            <svg className="w-[200%] h-full text-amber-300/30 animate-silk-2 -mt-20" viewBox="0 0 1600 160" preserveAspectRatio="none">
+              <path d="M0,60 Q400,0 800,60 T1600,60 L1600,0 L0,0 Z" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="6 6" />
+            </svg>
+          </div>
+
+          {/* Flowing Liquid Silk Wave Background Lines (Bottom Footer) */}
+          <div className="absolute bottom-0 left-0 right-0 h-36 pointer-events-none overflow-hidden opacity-30 group-hover:opacity-50 transition-opacity rotate-180">
             <svg className="w-[200%] h-full text-cyan-400/40 animate-silk-1" viewBox="0 0 1600 160" preserveAspectRatio="none">
               <path d="M0,40 Q400,120 800,40 T1600,40 L1600,0 L0,0 Z" fill="none" stroke="currentColor" strokeWidth="1.5" />
             </svg>
