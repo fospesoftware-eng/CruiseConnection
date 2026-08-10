@@ -72,11 +72,52 @@ export default function ProfileCard({ profile, onEditProfile, onShowToast, priva
       </div>
 
       {viewMode === 'card' ? (
-        /* Full Card View */
-        <div className="glass-card rounded-3xl p-6 relative overflow-hidden border border-white/15 shadow-2xl transition-all duration-300">
-          {/* Ambient Glow Orbs */}
+        /* Full Card View with Ultra-Premium Cruise Sailing Scene */
+        <div className="glass-card rounded-3xl p-6 relative overflow-hidden border border-white/15 shadow-2xl transition-all duration-300 group">
+          {/* Ambient Sunset Glow Orbs */}
           <div className="absolute -top-12 -right-12 w-44 h-44 rounded-full bg-cyan-500/20 blur-3xl pointer-events-none" />
           <div className="absolute -bottom-12 -left-12 w-44 h-44 rounded-full bg-pink-500/20 blur-3xl pointer-events-none" />
+
+          {/* Shimmer Light Reflection Sweep */}
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            <div className="w-1/2 h-full bg-gradient-to-r from-transparent via-white/5 to-transparent animate-shimmer" />
+          </div>
+
+          {/* --- ANIMATED CRUISE SAILING SCENE BACKGROUND --- */}
+          <div className="absolute top-0 left-0 right-0 h-28 pointer-events-none overflow-hidden rounded-t-3xl opacity-40 group-hover:opacity-65 transition-opacity">
+            {/* Horizon Sunset Sky Gradient */}
+            <div className="absolute inset-0 bg-gradient-to-b from-cyan-950/40 via-purple-950/20 to-transparent" />
+
+            {/* Sailing Cruise Ship Silhouette */}
+            <div className="absolute top-4 left-0 right-0 h-10 w-full animate-cruise-sail">
+              <svg className="h-8 w-auto fill-cyan-200/80 drop-shadow-[0_0_8px_rgba(56,189,248,0.6)]" viewBox="0 0 160 50">
+                {/* Ship Hull */}
+                <path d="M 10 38 L 135 38 C 145 38, 155 30, 158 20 L 140 20 L 128 12 L 40 12 L 25 24 L 10 38 Z" />
+                {/* Ship Decks & Windows */}
+                <rect x="45" y="6" width="75" height="5" rx="1" fill="#ffffff" />
+                <rect x="55" y="1" width="55" height="4" rx="1" fill="#38bdf8" />
+                <circle cx="60" cy="16" r="1.5" fill="#f59e0b" />
+                <circle cx="75" cy="16" r="1.5" fill="#f59e0b" />
+                <circle cx="90" cy="16" r="1.5" fill="#f59e0b" />
+                <circle cx="105" cy="16" r="1.5" fill="#f59e0b" />
+                <circle cx="120" cy="16" r="1.5" fill="#f59e0b" />
+                {/* Funnels & Smoke Puff */}
+                <rect x="65" y="-4" width="8" height="6" fill="#ec4899" />
+                <circle cx="69" cy="-7" r="2" fill="#ffffff" opacity="0.6" />
+                <circle cx="67" cy="-11" r="3" fill="#ffffff" opacity="0.3" />
+              </svg>
+            </div>
+
+            {/* Layered Animated Waves */}
+            <svg className="absolute bottom-0 left-0 right-0 w-full h-12 text-cyan-500/20 animate-wave-1" viewBox="0 0 1200 120" preserveAspectRatio="none">
+              <path d="M0,0 C150,90 350,-40 500,40 C650,120 900,20 1200,60 L1200,120 L0,120 Z" fill="currentColor" />
+            </svg>
+
+            <svg className="absolute bottom-0 left-0 right-0 w-full h-9 text-blue-400/30 animate-wave-2" viewBox="0 0 1200 120" preserveAspectRatio="none">
+              <path d="M0,30 C200,80 400,0 600,50 C800,100 1000,10 1200,40 L1200,120 L0,120 Z" fill="currentColor" />
+            </svg>
+          </div>
+          {/* --- END SAILING SCENE --- */}
 
           {/* Top Status & Minimalist Animated Privacy Pill Inside Card */}
           <div className="flex items-center justify-between relative z-10 mb-6">

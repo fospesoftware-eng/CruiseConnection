@@ -25,11 +25,11 @@
 }
 
 .glass-card {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.02) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
 }
 
 .glass-pill {
@@ -80,4 +80,70 @@
 
 .animate-laser-sweep {
   animation: laserSweep 2s ease-in-out infinite alternate;
+}
+
+/* --- Ultra Premium Cruise Sailing Animations --- */
+
+/* Cruise Ship Sailing Horizon Motion */
+@keyframes cruiseSail {
+  0% {
+    transform: translateX(-120%) translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateX(-30%) translateY(-2px) rotate(0.5deg);
+  }
+  50% {
+    transform: translateX(40%) translateY(1px) rotate(-0.5deg);
+  }
+  75% {
+    transform: translateX(110%) translateY(-1px) rotate(0.3deg);
+  }
+  100% {
+    transform: translateX(220%) translateY(0px) rotate(0deg);
+  }
+}
+
+.animate-cruise-sail {
+  animation: cruiseSail 18s linear infinite;
+}
+
+/* Ocean Wave Gentle Flow */
+@keyframes waveFlowOne {
+  0%, 100% {
+    transform: translateX(0px) translateY(0px);
+  }
+  50% {
+    transform: translateX(-20px) translateY(3px);
+  }
+}
+
+@keyframes waveFlowTwo {
+  0%, 100% {
+    transform: translateX(0px) translateY(0px);
+  }
+  50% {
+    transform: translateX(18px) translateY(-3px);
+  }
+}
+
+.animate-wave-1 {
+  animation: waveFlowOne 6s ease-in-out infinite;
+}
+
+.animate-wave-2 {
+  animation: waveFlowTwo 4.5s ease-in-out infinite;
+}
+
+/* Shimmer Light Reflection Pass */
+@keyframes cardShimmer {
+  0% {
+    transform: translateX(-100%) rotate(25deg);
+  }
+  100% {
+    transform: translateX(200%) rotate(25deg);
+  }
+}
+
+.animate-shimmer {
+  animation: cardShimmer 7s infinite ease-in-out;
 }
