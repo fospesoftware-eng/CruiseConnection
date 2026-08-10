@@ -73,11 +73,10 @@ export default function ProfileCard({ profile, onEditProfile, onShowToast, priva
 
       {viewMode === 'card' ? (
         /* Full Card View with Ultra-Luxury Real-World Cruise Ocean Environment */
-        <div className="luxury-border-wrapper shadow-2xl">
-          <div className="glass-card rounded-3xl p-6 relative overflow-hidden transition-all duration-500">
-            {/* Soft Breathing Ambient Backlight */}
-            <div className="absolute -top-16 -right-16 w-52 h-52 rounded-full bg-sky-500/10 blur-3xl pointer-events-none animate-luxury-breathe" />
-            <div className="absolute -bottom-16 -left-16 w-52 h-52 rounded-full bg-amber-500/10 blur-3xl pointer-events-none animate-luxury-breathe" />
+        <div className="glass-card rounded-3xl p-6 relative overflow-hidden border border-white/10 shadow-2xl transition-all duration-500">
+          {/* Soft Breathing Ambient Backlight */}
+          <div className="absolute -top-16 -right-16 w-52 h-52 rounded-full bg-sky-500/10 blur-3xl pointer-events-none animate-luxury-breathe" />
+          <div className="absolute -bottom-16 -left-16 w-52 h-52 rounded-full bg-amber-500/10 blur-3xl pointer-events-none animate-luxury-breathe" />
 
             {/* --- REAL-WORLD LUXURY OCEAN CRUISE LINER SAILING ENVIRONMENT --- */}
             <div className="absolute top-0 left-0 right-0 h-32 pointer-events-none overflow-hidden rounded-t-3xl opacity-35 group-hover:opacity-60 transition-opacity">
@@ -207,24 +206,26 @@ export default function ProfileCard({ profile, onEditProfile, onShowToast, priva
                 "{profile.bio}"
               </p>
 
-              {/* QR Code Container */}
-              <div className="my-3 p-4 rounded-2xl bg-white p-3 shadow-2xl relative group cursor-pointer border border-white/20" onClick={() => setViewMode('qr')}>
-                <QRCodeSVG
-                  value={profile.qrCodeVal}
-                  size={160}
-                  level="H"
-                  includeMargin={false}
-                  imageSettings={{
-                    src: "/favicon.svg",
-                    x: undefined,
-                    y: undefined,
-                    height: 32,
-                    width: 32,
-                    excavate: true,
-                  }}
-                />
-                <div className="absolute inset-0 bg-slate-950/70 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-slate-200 text-xs font-medium gap-1">
-                  <Sparkles className="w-4 h-4 text-amber-400" /> Tap to Enlarge
+              {/* QR Code Container with Running Gradient Animated Border */}
+              <div className="my-3 luxury-border-wrapper p-0.5 rounded-3xl shadow-2xl inline-block">
+                <div className="p-4 rounded-[22px] bg-white relative group cursor-pointer" onClick={() => setViewMode('qr')}>
+                  <QRCodeSVG
+                    value={profile.qrCodeVal}
+                    size={160}
+                    level="H"
+                    includeMargin={false}
+                    imageSettings={{
+                      src: "/favicon.svg",
+                      x: undefined,
+                      y: undefined,
+                      height: 32,
+                      width: 32,
+                      excavate: true,
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-slate-950/70 rounded-[22px] opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-slate-200 text-xs font-medium gap-1">
+                    <Sparkles className="w-4 h-4 text-amber-400" /> Tap to Enlarge
+                  </div>
                 </div>
               </div>
 
@@ -343,8 +344,7 @@ export default function ProfileCard({ profile, onEditProfile, onShowToast, priva
               </button>
             </div>
           </div>
-        </div>
-      ) : (
+        ) : (
         /* Enlarged Standalone QR Mode for high brightness scanning */
         <div className="glass-card rounded-3xl p-8 text-center flex flex-col items-center space-y-6 border border-white/10">
           <div>
