@@ -59,6 +59,7 @@ export default function App() {
           <ProfileCard
             profile={profile}
             privacyMode={privacyMode}
+            isKidsMode={isKidsMode}
             onTogglePrivacyMode={handleTogglePrivacyMode}
             onEditProfile={() => setIsProfileModalOpen(true)}
             onShowToast={showToast}

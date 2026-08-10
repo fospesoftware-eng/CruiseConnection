@@ -52,7 +52,12 @@ export default function ProfileCard({ profile, onEditProfile, onShowToast, priva
 
   const handleDownloadMyVCard = () => {
     if (isPrivate) {
-      onShowToast('vCard disabled in Private Mode. Switch to Full Share mode to enable.', 'error');
+      onShowToast(
+        isKidsMode 
+          ? 'vCard disabled in Kids Mode by Parental Controls.'
+          : 'vCard disabled in Private Mode. Switch to Full Share mode to enable.',
+        'error'
+      );
       return;
     }
     downloadVCard(profile);
@@ -113,7 +118,9 @@ export default function ProfileCard({ profile, onEditProfile, onShowToast, priva
           style={{
             transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
           }}
-          className="glass-card-ultra rounded-3xl p-6 relative overflow-hidden transition-transform duration-150 ease-out group"
+          className={`glass-card-ultra rounded-3xl p-6 relative overflow-hidden transition-transform duration-150 ease-out group ${
+            isKidsMode ? 'border-emerald-500/40 shadow-emerald-500/10' : ''
+          }`}
         >
           {/* Specular Interactive Cursor Sheen */}
           <div
@@ -322,14 +329,24 @@ export default function ProfileCard({ profile, onEditProfile, onShowToast, priva
             </button>
           </div>
 
-          {/* Minimalist Soft Footer Privacy Switcher */}
+          {/* Minimalist Soft Footer Privacy Switcher / Kids Mode Indicator */}
           <div className="mt-4 pt-3 border-t border-white/5 relative z-10 flex items-center justify-between px-1">
             <div className="flex items-center gap-2">
-              <span className={`w-1.5 h-1.5 rounded-full ${isPrivate ? 'bg-sky-400' : 'bg-amber-400'}`} />
+              <span className={`w-1.5 h-1.5 rounded-full ${
+                isKidsMode ? 'bg-emerald-400 animate-pulse' : isPrivate ? 'bg-sky-400' : 'bg-amber-400'
+              }`} />
               <div className="text-left">
                 <p className="text-[11px] font-semibold text-slate-300 flex items-center gap-1">
-                  {isPrivate ? <Lock className="w-3 h-3 text-sky-400" /> : <Unlock className="w-3 h-3 text-amber-400" />}
-                  <span>{isPrivate ? 'Private Mode' : 'Full Share Mode'}</span>
+                  {isKidsMode ? (
+                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+                  ) : isPrivate ? (
+                    <Lock className="w-3 h-3 text-sky-400" />
+                  ) : (
+                    <Unlock className="w-3 h-3 text-amber-400" />
+                  )}
+                  <span>
+                    {isKidsMode ? 'Kids Mode (Parental Lock Active)' : isPrivate ? 'Private Mode' : 'Full Share Mode'}
+                  </span>
                 </p>
               </div>
             </div>
@@ -340,9 +357,13 @@ export default function ProfileCard({ profile, onEditProfile, onShowToast, priva
                 sounds.playPop();
                 onTogglePrivacyMode(isPrivate ? 'full' : 'private');
               }}
-              className="px-3 py-1 rounded-full text-[10px] font-semibold transition-all border border-white/10 bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white active:scale-95"
+              className={`px-3 py-1 rounded-full text-[10px] font-semibold transition-all border ${
+                isKidsMode 
+                  ? 'border-emerald-500/40 bg-emerald-500/10 text-emerald-300 cursor-not-allowed'
+                  : 'border-white/10 bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white active:scale-95'
+              }`}
             >
-              {isPrivate ? 'Enable Full' : 'Make Private'}
+              {isKidsMode ? 'PIN Locked' : isPrivate ? 'Enable Full' : 'Make Private'}
             </button>
           </div>
         </div>

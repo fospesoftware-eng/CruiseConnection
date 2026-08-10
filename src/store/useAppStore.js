@@ -163,19 +163,19 @@ export function useAppStore() {
     localStorage.setItem('scanme_parental_pin', parentalPin);
   }, [parentalPin]);
 
-  const handleToggleKidsMode = (enable, inputPin, newPin = null) => {
+  const handleToggleParentalControl = (enable, inputPin, newPin = null) => {
     if (enable) {
       const pinToSet = newPin || '1234';
       setParentalPin(pinToSet);
       setIsKidsMode(true);
       setPrivacyMode('private'); // Enforce strict privacy
-      showToast('Kids Mode / Parental Control Enabled 🛡️', 'success');
+      showToast('Parental Controls Turned ON: Kids Mode Activated 🛡️', 'success');
       return true;
     } else {
       // Disable requires matching PIN
       if (inputPin === parentalPin) {
         setIsKidsMode(false);
-        showToast('Kids Mode Disabled', 'info');
+        showToast('Parental Controls Turned OFF', 'info');
         return true;
       } else {
         showToast('Incorrect Parental PIN!', 'error');
@@ -185,6 +185,10 @@ export function useAppStore() {
   };
 
   const handleTogglePrivacyMode = (newMode) => {
+    if (isKidsMode) {
+      showToast('Kids Mode Active: Parental Control PIN required to enable Full Share', 'error');
+      return;
+    }
     setPrivacyMode(newMode);
     if (newMode === 'private') {
       showToast('Switched to Private Mode (Chat Only)', 'info');
