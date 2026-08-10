@@ -7,143 +7,113 @@
     color-scheme: dark;
   }
   body {
-    background-color: #070a12;
+    background-color: #080c14;
     background-image: 
-      radial-gradient(at 0% 0%, rgba(14, 165, 233, 0.12) 0px, transparent 50%),
-      radial-gradient(at 100% 0%, rgba(236, 72, 153, 0.1) 0px, transparent 50%),
-      radial-gradient(at 50% 100%, rgba(139, 92, 246, 0.12) 0px, transparent 50%);
+      radial-gradient(at 0% 0%, rgba(14, 165, 233, 0.08) 0px, transparent 55%),
+      radial-gradient(at 100% 0%, rgba(245, 158, 11, 0.06) 0px, transparent 55%),
+      radial-gradient(at 50% 100%, rgba(125, 211, 252, 0.07) 0px, transparent 55%);
     background-attachment: fixed;
   }
 }
 
-/* Glassmorphism Utilities */
+/* Luxury Glassmorphism */
 .glass-panel {
-  background: rgba(17, 24, 39, 0.65);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .glass-card {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.015) 100%);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.7);
 }
 
 .glass-pill {
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* Glowing Border Effect */
-.glow-cyan {
-  box-shadow: 0 0 25px -5px rgba(6, 182, 212, 0.4);
-}
-
-.glow-pink {
-  box-shadow: 0 0 25px -5px rgba(236, 72, 153, 0.4);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: rgba(7, 10, 18, 0.5);
+  background: rgba(8, 12, 20, 0.5);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.12);
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.25);
 }
 
-/* Radar Scan Line Animation */
-@keyframes laserSweep {
-  0% {
-    transform: translateY(0%);
-    opacity: 0.8;
+/* --- Ultra-Luxury Soft Animations --- */
+
+/* Slow Breathing Luxury Ambient Glow */
+@keyframes luxuryBreathe {
+  0%, 100% {
+    opacity: 0.25;
+    transform: scale(1);
   }
   50% {
-    opacity: 1;
+    opacity: 0.45;
+    transform: scale(1.08);
+  }
+}
+
+.animate-luxury-breathe {
+  animation: luxuryBreathe 12s ease-in-out infinite;
+}
+
+/* Soft Oceanic Breeze Line Flow */
+@keyframes luxuryWaveOne {
+  0%, 100% {
+    transform: translateX(0px) translateY(0px);
+  }
+  50% {
+    transform: translateX(-15px) translateY(2px);
+  }
+}
+
+@keyframes luxuryWaveTwo {
+  0%, 100% {
+    transform: translateX(0px) translateY(0px);
+  }
+  50% {
+    transform: translateX(12px) translateY(-2px);
+  }
+}
+
+.animate-luxury-wave-1 {
+  animation: luxuryWaveOne 14s ease-in-out infinite;
+}
+
+.animate-luxury-wave-2 {
+  animation: luxuryWaveTwo 10s ease-in-out infinite;
+}
+
+/* Elegant Subdued Laser Sweep for Scanner */
+@keyframes laserSweepSoft {
+  0% {
+    top: 0%;
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.9;
   }
   100% {
-    transform: translateY(240px);
-    opacity: 0.8;
+    top: 96%;
+    opacity: 0.4;
   }
 }
 
 .animate-laser-sweep {
-  animation: laserSweep 2s ease-in-out infinite alternate;
-}
-
-/* --- Ultra Premium Cruise Sailing Animations --- */
-
-/* Cruise Ship Sailing Horizon Motion */
-@keyframes cruiseSail {
-  0% {
-    transform: translateX(-120%) translateY(0px) rotate(0deg);
-  }
-  25% {
-    transform: translateX(-30%) translateY(-2px) rotate(0.5deg);
-  }
-  50% {
-    transform: translateX(40%) translateY(1px) rotate(-0.5deg);
-  }
-  75% {
-    transform: translateX(110%) translateY(-1px) rotate(0.3deg);
-  }
-  100% {
-    transform: translateX(220%) translateY(0px) rotate(0deg);
-  }
-}
-
-.animate-cruise-sail {
-  animation: cruiseSail 18s linear infinite;
-}
-
-/* Ocean Wave Gentle Flow */
-@keyframes waveFlowOne {
-  0%, 100% {
-    transform: translateX(0px) translateY(0px);
-  }
-  50% {
-    transform: translateX(-20px) translateY(3px);
-  }
-}
-
-@keyframes waveFlowTwo {
-  0%, 100% {
-    transform: translateX(0px) translateY(0px);
-  }
-  50% {
-    transform: translateX(18px) translateY(-3px);
-  }
-}
-
-.animate-wave-1 {
-  animation: waveFlowOne 6s ease-in-out infinite;
-}
-
-.animate-wave-2 {
-  animation: waveFlowTwo 4.5s ease-in-out infinite;
-}
-
-/* Shimmer Light Reflection Pass */
-@keyframes cardShimmer {
-  0% {
-    transform: translateX(-100%) rotate(25deg);
-  }
-  100% {
-    transform: translateX(200%) rotate(25deg);
-  }
-}
-
-.animate-shimmer {
-  animation: cardShimmer 7s infinite ease-in-out;
+  animation: laserSweepSoft 2.4s ease-in-out infinite alternate;
 }

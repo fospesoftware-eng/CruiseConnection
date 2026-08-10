@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
-import { Edit3, Download, Share2, Copy, Sparkles, MapPin, Phone, Mail, Instagram, Linkedin, ExternalLink, ShieldCheck, Lock, Unlock, Eye, EyeOff } from 'lucide-react';
+import { Edit3, Download, Share2, Copy, Sparkles, MapPin, Phone, Mail, Instagram, Linkedin, ExternalLink, ShieldCheck, Lock, Unlock } from 'lucide-react';
 import { downloadVCard } from '../utils/vcard';
 import { hapticFeedback } from '../utils/haptics';
 import { sounds } from '../utils/sound';
@@ -52,7 +52,7 @@ export default function ProfileCard({ profile, onEditProfile, onShowToast, priva
             onClick={() => setViewMode('card')}
             className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all ${
               viewMode === 'card'
-                ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-md'
+                ? 'bg-gradient-to-r from-slate-100 to-slate-300 text-slate-950 shadow-md font-bold'
                 : 'text-slate-400 hover:text-slate-200'
             }`}
           >
@@ -62,7 +62,7 @@ export default function ProfileCard({ profile, onEditProfile, onShowToast, priva
             onClick={() => setViewMode('qr')}
             className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all ${
               viewMode === 'qr'
-                ? 'bg-gradient-to-r from-cyan-500 to-pink-500 text-white shadow-md'
+                ? 'bg-gradient-to-r from-slate-100 to-slate-300 text-slate-950 shadow-md font-bold'
                 : 'text-slate-400 hover:text-slate-200'
             }`}
           >
@@ -72,105 +72,74 @@ export default function ProfileCard({ profile, onEditProfile, onShowToast, priva
       </div>
 
       {viewMode === 'card' ? (
-        /* Full Card View with Ultra-Premium Cruise Sailing Scene */
-        <div className="glass-card rounded-3xl p-6 relative overflow-hidden border border-white/15 shadow-2xl transition-all duration-300 group">
-          {/* Ambient Sunset Glow Orbs */}
-          <div className="absolute -top-12 -right-12 w-44 h-44 rounded-full bg-cyan-500/20 blur-3xl pointer-events-none" />
-          <div className="absolute -bottom-12 -left-12 w-44 h-44 rounded-full bg-pink-500/20 blur-3xl pointer-events-none" />
+        /* Full Card View with Ultra-Luxury Soft Minimalist Aesthetics */
+        <div className="glass-card rounded-3xl p-6 relative overflow-hidden border border-white/10 shadow-2xl transition-all duration-500">
+          {/* Soft Breathing Ambient Backlight */}
+          <div className="absolute -top-16 -right-16 w-52 h-52 rounded-full bg-sky-500/10 blur-3xl pointer-events-none animate-luxury-breathe" />
+          <div className="absolute -bottom-16 -left-16 w-52 h-52 rounded-full bg-amber-500/10 blur-3xl pointer-events-none animate-luxury-breathe" />
 
-          {/* Shimmer Light Reflection Sweep */}
-          <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            <div className="w-1/2 h-full bg-gradient-to-r from-transparent via-white/5 to-transparent animate-shimmer" />
-          </div>
-
-          {/* --- ANIMATED CRUISE SAILING SCENE BACKGROUND --- */}
-          <div className="absolute top-0 left-0 right-0 h-28 pointer-events-none overflow-hidden rounded-t-3xl opacity-40 group-hover:opacity-65 transition-opacity">
-            {/* Horizon Sunset Sky Gradient */}
-            <div className="absolute inset-0 bg-gradient-to-b from-cyan-950/40 via-purple-950/20 to-transparent" />
-
-            {/* Sailing Cruise Ship Silhouette */}
-            <div className="absolute top-4 left-0 right-0 h-10 w-full animate-cruise-sail">
-              <svg className="h-8 w-auto fill-cyan-200/80 drop-shadow-[0_0_8px_rgba(56,189,248,0.6)]" viewBox="0 0 160 50">
-                {/* Ship Hull */}
-                <path d="M 10 38 L 135 38 C 145 38, 155 30, 158 20 L 140 20 L 128 12 L 40 12 L 25 24 L 10 38 Z" />
-                {/* Ship Decks & Windows */}
-                <rect x="45" y="6" width="75" height="5" rx="1" fill="#ffffff" />
-                <rect x="55" y="1" width="55" height="4" rx="1" fill="#38bdf8" />
-                <circle cx="60" cy="16" r="1.5" fill="#f59e0b" />
-                <circle cx="75" cy="16" r="1.5" fill="#f59e0b" />
-                <circle cx="90" cy="16" r="1.5" fill="#f59e0b" />
-                <circle cx="105" cy="16" r="1.5" fill="#f59e0b" />
-                <circle cx="120" cy="16" r="1.5" fill="#f59e0b" />
-                {/* Funnels & Smoke Puff */}
-                <rect x="65" y="-4" width="8" height="6" fill="#ec4899" />
-                <circle cx="69" cy="-7" r="2" fill="#ffffff" opacity="0.6" />
-                <circle cx="67" cy="-11" r="3" fill="#ffffff" opacity="0.3" />
-              </svg>
-            </div>
-
-            {/* Layered Animated Waves */}
-            <svg className="absolute bottom-0 left-0 right-0 w-full h-12 text-cyan-500/20 animate-wave-1" viewBox="0 0 1200 120" preserveAspectRatio="none">
-              <path d="M0,0 C150,90 350,-40 500,40 C650,120 900,20 1200,60 L1200,120 L0,120 Z" fill="currentColor" />
+          {/* Minimalist Soft Wave Horizon Vector Accent */}
+          <div className="absolute top-0 left-0 right-0 h-20 pointer-events-none overflow-hidden opacity-20">
+            <svg className="w-full h-full text-sky-200 animate-luxury-wave-1" viewBox="0 0 1200 120" preserveAspectRatio="none">
+              <path d="M0,0 C150,50 350,-20 500,20 C650,60 900,10 1200,30 L1200,0 L0,0 Z" fill="none" stroke="currentColor" strokeWidth="1.5" />
             </svg>
-
-            <svg className="absolute bottom-0 left-0 right-0 w-full h-9 text-blue-400/30 animate-wave-2" viewBox="0 0 1200 120" preserveAspectRatio="none">
-              <path d="M0,30 C200,80 400,0 600,50 C800,100 1000,10 1200,40 L1200,120 L0,120 Z" fill="currentColor" />
+            <svg className="w-full h-full text-slate-400 animate-luxury-wave-2 -mt-16" viewBox="0 0 1200 120" preserveAspectRatio="none">
+              <path d="M0,20 C200,40 400,-10 600,25 C800,60 1000,5 1200,20 L1200,0 L0,0 Z" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" />
             </svg>
           </div>
-          {/* --- END SAILING SCENE --- */}
 
           {/* Top Status & Edit Bar */}
           <div className="flex items-center justify-between relative z-10 mb-6">
-            <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-[11px] font-bold tracking-wider uppercase">
-              <ShieldCheck className="w-3.5 h-3.5" />
+            <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-slate-200 text-[10px] font-bold tracking-widest uppercase">
+              <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
               <span>{profile.badge || 'VERIFIED VIP'}</span>
             </div>
 
             <button
               onClick={onEditProfile}
-              className="p-2 rounded-full glass-pill hover:bg-white/10 text-slate-300 hover:text-white transition-colors"
+              className="p-2 rounded-full glass-pill hover:bg-white/10 text-slate-400 hover:text-white transition-colors"
               title="Edit Profile"
             >
-              <Edit3 className="w-4 h-4" />
+              <Edit3 className="w-3.5 h-3.5" />
             </button>
           </div>
 
           {/* Main Profile Info */}
           <div className="flex flex-col items-center text-center relative z-10 space-y-3">
-            {/* Avatar with Glow Ring */}
+            {/* Avatar with Soft Pearl Ring */}
             <div className="relative group cursor-pointer" onClick={onEditProfile}>
-              <div className="w-24 h-24 rounded-full p-1 bg-gradient-to-tr from-cyan-400 via-pink-500 to-violet-500 shadow-xl shadow-cyan-500/20 animate-pulse-glow">
+              <div className="w-24 h-24 rounded-full p-1 bg-gradient-to-tr from-slate-200 via-sky-400/40 to-amber-300/40 shadow-2xl">
                 <img
                   src={profile.avatar}
                   alt={profile.name}
                   className="w-full h-full object-cover rounded-full bg-slate-900"
                 />
               </div>
-              <div className="absolute bottom-0 right-0 w-7 h-7 rounded-full bg-cyan-500 p-1 flex items-center justify-center text-slate-950 font-bold border-2 border-slate-950">
-                <Sparkles className="w-3.5 h-3.5" />
+              <div className="absolute bottom-0 right-0 w-6 h-6 rounded-full bg-slate-900 p-1 flex items-center justify-center text-amber-400 border border-white/20 shadow-md">
+                <Sparkles className="w-3 h-3" />
               </div>
             </div>
 
             <div>
               <h2 className="text-2xl font-extrabold text-white tracking-tight">{profile.name}</h2>
-              <p className="text-xs font-semibold text-cyan-400 mt-0.5">{profile.title} {profile.company ? `• ${profile.company}` : ''}</p>
+              <p className="text-xs font-medium text-slate-300 mt-0.5">{profile.title} {profile.company ? `• ${profile.company}` : ''}</p>
             </div>
 
             {/* Location Badge */}
             {profile.locationTag && (
-              <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900/80 border border-white/10 text-slate-300 text-xs font-medium">
-                <MapPin className="w-3.5 h-3.5 text-pink-400" />
+              <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-slate-300 text-xs font-medium">
+                <MapPin className="w-3 h-3 text-amber-400" />
                 <span>{profile.locationTag}</span>
               </div>
             )}
 
             {/* Bio */}
-            <p className="text-xs text-slate-300 max-w-xs leading-relaxed italic bg-white/5 p-3 rounded-2xl border border-white/5">
+            <p className="text-xs text-slate-300 max-w-xs leading-relaxed italic bg-white/[0.03] p-3 rounded-2xl border border-white/5">
               "{profile.bio}"
             </p>
 
             {/* QR Code Container */}
-            <div className="my-3 p-4 rounded-2xl bg-white p-3 shadow-2xl relative group cursor-pointer" onClick={() => setViewMode('qr')}>
+            <div className="my-3 p-4 rounded-2xl bg-white p-3 shadow-2xl relative group cursor-pointer border border-white/20" onClick={() => setViewMode('qr')}>
               <QRCodeSVG
                 value={profile.qrCodeVal}
                 size={160}
@@ -185,19 +154,19 @@ export default function ProfileCard({ profile, onEditProfile, onShowToast, priva
                   excavate: true,
                 }}
               />
-              <div className="absolute inset-0 bg-slate-950/70 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-cyan-300 text-xs font-bold gap-1">
-                <Sparkles className="w-4 h-4" /> Tap to Enlarge
+              <div className="absolute inset-0 bg-slate-950/70 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-slate-200 text-xs font-medium gap-1">
+                <Sparkles className="w-4 h-4 text-amber-400" /> Tap to Enlarge
               </div>
             </div>
 
             <p className="text-[11px] font-medium text-slate-400 flex items-center gap-1">
               {isPrivate ? (
-                <span className="flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-cyan-500/10 text-cyan-300 border border-cyan-500/30 font-semibold text-[10px]">
-                  <Lock className="w-3 h-3 text-cyan-400" /> Private Mode: Shares Profile & Chat Only
+                <span className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-sky-500/10 text-sky-300 border border-sky-500/20 font-medium text-[10px]">
+                  <Lock className="w-3 h-3 text-sky-400" /> Private Mode: Shares Profile & Chat Only
                 </span>
               ) : (
-                <span className="flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-pink-500/10 text-pink-300 border border-pink-500/30 font-semibold text-[10px]">
-                  <Unlock className="w-3 h-3 text-pink-400" /> Full Share Mode: Phone, Email & Social Shared
+                <span className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-300 border border-amber-500/20 font-medium text-[10px]">
+                  <Unlock className="w-3 h-3 text-amber-400" /> Full Share Mode: Phone, Email & Social Shared
                 </span>
               )}
             </p>
@@ -210,9 +179,9 @@ export default function ProfileCard({ profile, onEditProfile, onShowToast, priva
                     href={`https://instagram.com/${profile.instagram.replace('@', '')}`}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-pink-500/10 hover:bg-pink-500/20 text-pink-300 border border-pink-500/30 text-xs font-medium transition-colors"
+                    className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 text-xs font-medium transition-colors"
                   >
-                    <Instagram className="w-3.5 h-3.5" />
+                    <Instagram className="w-3.5 h-3.5 text-pink-400" />
                     <span>@{profile.instagram.replace('@', '')}</span>
                   </a>
                 )}
@@ -221,26 +190,26 @@ export default function ProfileCard({ profile, onEditProfile, onShowToast, priva
                     href={`https://linkedin.com/in/${profile.linkedin}`}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-blue-500/10 hover:bg-blue-500/20 text-blue-300 border border-blue-500/30 text-xs font-medium transition-colors"
+                    className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 text-xs font-medium transition-colors"
                   >
-                    <Linkedin className="w-3.5 h-3.5" />
+                    <Linkedin className="w-3.5 h-3.5 text-sky-400" />
                     <span>LinkedIn</span>
                   </a>
                 )}
                 {profile.phone && (
                   <a
                     href={`tel:${profile.phone}`}
-                    className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-medium transition-colors"
+                    className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 text-xs font-medium transition-colors"
                   >
-                    <Phone className="w-3.5 h-3.5" />
+                    <Phone className="w-3.5 h-3.5 text-emerald-400" />
                     <span>{profile.phone}</span>
                   </a>
                 )}
               </div>
             ) : (
-              <div className="flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-medium">
-                <Lock className="w-3.5 h-3.5" />
-                <span>Private Mode Enabled: Phone & Social Handles Hidden</span>
+              <div className="flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/80 border border-white/5 text-slate-400 text-[11px] font-normal">
+                <Lock className="w-3 h-3 text-slate-500" />
+                <span>Phone & social handles shielded</span>
               </div>
             )}
 
@@ -248,7 +217,7 @@ export default function ProfileCard({ profile, onEditProfile, onShowToast, priva
             {profile.tags && profile.tags.length > 0 && (
               <div className="flex flex-wrap justify-center gap-1.5 pt-1">
                 {profile.tags.map((tag, idx) => (
-                  <span key={idx} className="text-[10px] px-2 py-0.5 rounded-md bg-white/5 text-slate-400 border border-white/5">
+                  <span key={idx} className="text-[10px] px-2 py-0.5 rounded-md bg-white/[0.03] text-slate-400 border border-white/5">
                     #{tag}
                   </span>
                 ))}
@@ -260,38 +229,35 @@ export default function ProfileCard({ profile, onEditProfile, onShowToast, priva
           <div className="grid grid-cols-3 gap-2 mt-6 pt-4 border-t border-white/10 relative z-10">
             <button
               onClick={handleDownloadMyVCard}
-              className="flex flex-col items-center justify-center p-2.5 rounded-xl glass-pill hover:bg-white/10 text-slate-200 transition-all active:scale-95"
+              className="flex flex-col items-center justify-center p-2.5 rounded-xl glass-pill hover:bg-white/10 text-slate-300 hover:text-white transition-all active:scale-95"
             >
-              <Download className="w-4 h-4 text-cyan-400 mb-1" />
-              <span className="text-[10px] font-semibold">vCard</span>
+              <Download className="w-4 h-4 text-slate-300 mb-1" />
+              <span className="text-[10px] font-medium">vCard</span>
             </button>
             <button
               onClick={handleCopyLink}
-              className="flex flex-col items-center justify-center p-2.5 rounded-xl glass-pill hover:bg-white/10 text-slate-200 transition-all active:scale-95"
+              className="flex flex-col items-center justify-center p-2.5 rounded-xl glass-pill hover:bg-white/10 text-slate-300 hover:text-white transition-all active:scale-95"
             >
-              <Copy className="w-4 h-4 text-pink-400 mb-1" />
-              <span className="text-[10px] font-semibold">Copy Link</span>
+              <Copy className="w-4 h-4 text-slate-300 mb-1" />
+              <span className="text-[10px] font-medium">Copy Link</span>
             </button>
             <button
               onClick={handleShare}
-              className="flex flex-col items-center justify-center p-2.5 rounded-xl glass-pill hover:bg-white/10 text-slate-200 transition-all active:scale-95"
+              className="flex flex-col items-center justify-center p-2.5 rounded-xl glass-pill hover:bg-white/10 text-slate-300 hover:text-white transition-all active:scale-95"
             >
-              <Share2 className="w-4 h-4 text-violet-400 mb-1" />
-              <span className="text-[10px] font-semibold">Share</span>
+              <Share2 className="w-4 h-4 text-slate-300 mb-1" />
+              <span className="text-[10px] font-medium">Share</span>
             </button>
           </div>
 
-          {/* Minimalist Animated Card Footer Privacy Mode Switcher */}
+          {/* Ultra-Minimalist Soft Footer Privacy Switcher */}
           <div className="mt-4 pt-3 border-t border-white/5 relative z-10 flex items-center justify-between px-1">
             <div className="flex items-center gap-2">
-              <span className={`w-2 h-2 rounded-full animate-ping ${isPrivate ? 'bg-cyan-400' : 'bg-pink-400'}`} />
+              <span className={`w-1.5 h-1.5 rounded-full ${isPrivate ? 'bg-sky-400' : 'bg-amber-400'}`} />
               <div className="text-left">
-                <p className="text-[11px] font-bold text-slate-200 flex items-center gap-1">
-                  {isPrivate ? <Lock className="w-3 h-3 text-cyan-400" /> : <Unlock className="w-3 h-3 text-pink-400" />}
-                  <span>{isPrivate ? 'Private Mode (Chat Only)' : 'Full Share Mode'}</span>
-                </p>
-                <p className="text-[9px] text-slate-400">
-                  {isPrivate ? 'Phone & social hidden on QR scan' : 'Phone & social visible on QR scan'}
+                <p className="text-[11px] font-semibold text-slate-300 flex items-center gap-1">
+                  {isPrivate ? <Lock className="w-3 h-3 text-sky-400" /> : <Unlock className="w-3 h-3 text-amber-400" />}
+                  <span>{isPrivate ? 'Private Mode' : 'Full Share Mode'}</span>
                 </p>
               </div>
             </div>
@@ -302,11 +268,7 @@ export default function ProfileCard({ profile, onEditProfile, onShowToast, priva
                 sounds.playPop();
                 onTogglePrivacyMode(isPrivate ? 'full' : 'private');
               }}
-              className={`px-3 py-1 rounded-full text-[10px] font-extrabold transition-all duration-300 border shadow-md active:scale-95 ${
-                isPrivate
-                  ? 'bg-slate-900 hover:bg-slate-800 text-cyan-300 border-cyan-500/30'
-                  : 'bg-gradient-to-r from-pink-500/20 to-violet-500/20 text-pink-300 border-pink-500/40'
-              }`}
+              className="px-3 py-1 rounded-full text-[10px] font-semibold transition-all border border-white/10 bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white active:scale-95"
             >
               {isPrivate ? 'Enable Full' : 'Make Private'}
             </button>
@@ -314,13 +276,13 @@ export default function ProfileCard({ profile, onEditProfile, onShowToast, priva
         </div>
       ) : (
         /* Enlarged Standalone QR Mode for high brightness scanning */
-        <div className="glass-card rounded-3xl p-8 text-center flex flex-col items-center space-y-6 border border-cyan-500/30">
+        <div className="glass-card rounded-3xl p-8 text-center flex flex-col items-center space-y-6 border border-white/10">
           <div>
-            <h3 className="text-xl font-bold text-white">Full Screen QR</h3>
+            <h3 className="text-xl font-extrabold text-white">Full Screen QR</h3>
             <p className="text-xs text-slate-400 mt-1">Show this screen to anyone scanning your card</p>
           </div>
 
-          <div className="p-6 bg-white rounded-3xl shadow-2xl glow-cyan animate-pulse-glow">
+          <div className="p-6 bg-white rounded-3xl shadow-2xl">
             <QRCodeSVG
               value={profile.qrCodeVal}
               size={240}
@@ -330,21 +292,21 @@ export default function ProfileCard({ profile, onEditProfile, onShowToast, priva
           </div>
 
           <div className="text-center">
-            <p className="text-sm font-bold text-cyan-400">{profile.name}</p>
+            <p className="text-sm font-bold text-white">{profile.name}</p>
             <p className="text-xs text-slate-400">{profile.title}</p>
           </div>
 
           <div className="flex gap-3">
             <button
               onClick={handleCopyLink}
-              className="flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-white border border-white/10"
+              className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 hover:bg-white/10 text-xs font-medium text-slate-200 border border-white/10"
             >
-              <Copy className="w-4 h-4 text-cyan-400" />
+              <Copy className="w-4 h-4 text-slate-300" />
               <span>Copy URL</span>
             </button>
             <button
               onClick={handleShare}
-              className="flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500 to-pink-500 text-xs font-semibold text-white"
+              className="flex items-center gap-2 px-4 py-2 rounded-full bg-slate-100 text-slate-950 text-xs font-bold shadow-md hover:bg-white"
             >
               <Share2 className="w-4 h-4" />
               <span>Share QR</span>
